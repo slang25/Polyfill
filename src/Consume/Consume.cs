@@ -117,6 +117,13 @@ class Consume
         var read = await stream.ReadAsync(memory);
     }
 
+    void TryFormat()
+    {
+        var span = new Span<char>(new char[]{});
+        int.MaxValue.TryFormat(span, out var _);
+        
+        Number.TryFormatInt32(m_value, ~0, format, provider, destination, out charsWritten);
+    }
     void SpanContains()
     {
         var contains = "value".AsSpan().Contains('e');
